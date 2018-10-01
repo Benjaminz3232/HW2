@@ -1,0 +1,13 @@
+<!-- Benjamin Zeffer yeet yeet yeet -->
+
+{% block content %}
+<form method="POST" action="http://localhost:5000/album_result">
+      {{ form.hidden_tag() }}
+      {% for message in get_flashed_messages() %}
+      {{ message }}
+      {% endfor %}
+      <p>{{ form.name_of_album.label }}{{ form.name_of_album() }}</p>
+      <p>{{ form.options.label }}{{ form.options() }}</p> 
+      {{ form.submit() }}
+  </form>
+{% endblock %}
