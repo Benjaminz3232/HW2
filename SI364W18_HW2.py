@@ -16,7 +16,7 @@
 ## (new .html files) to the templates directory.
 
 #############################
-##### IMPORT STATEMENTS #####
+##### IMPORT STATEMENTS ##### yeet
 #############################
 from flask import Flask, request, render_template, url_for
 from flask_wtf import FlaskForm
@@ -26,14 +26,14 @@ import requests
 import json
 
 #####################
-##### APP SETUP #####
+##### APP SETUP ##### yeet
 #####################
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hardtoguessstring'
 
 ####################
-###### FORMS #######
+###### FORMS ####### yeet
 ####################
 
 class AlbumEntryForm(FlaskForm):
@@ -42,7 +42,7 @@ class AlbumEntryForm(FlaskForm):
     submit = SubmitField('Submit')
 
 ####################
-###### ROUTES ######
+###### ROUTES ###### yeet
 ####################
 
 @app.route('/')
@@ -54,7 +54,7 @@ def hello_user(name):
     return '<h1>Hello {0}<h1>'.format(name)
 
 ####################
-#### MY ROUTES ##### Benjamin Zeffer yeet yeet yeet YEEEEEEEEEEEEEET
+#### MY ROUTES ##### yeet
 ####################
 
 @app.route('/artistform')
@@ -64,9 +64,9 @@ def artist_form():
 @app.route('/artistinfo', methods=['GET', 'POST'])
 def artist_info():
     base_url = "https://itunes.apple.com/search?"
-    
+
     artist = request.args.get('artist',"")
-    param_dict = {'term': artist, 'entity' : 'musicTrack'}
+    param_dict = {'term':artist, 'entity':'musicTrack'}
 
     r = requests.get(base_url, params = param_dict)
     response = json.loads(r.text)['results']
@@ -94,19 +94,16 @@ def album_entry():
 
 @app.route('/album_result', methods=['GET', 'POST'])
 def album_result():
-    form = AlbumEntryForm(request.form)
-
+    form = AlbumEntryForm()
+    
     if request.method == 'POST' and form.validate_on_submit():
         name_of_album = form.name_of_album
         options = form.options.data
 
         return render_template('album_data.html', name_of_album=name_of_album, options=options)
 
-    flash('All fields are required!')
-
-    return redirect(url_for('/album_entry'))
-
-## Benjamin Zeffer yeet yeet yeet
 
 if __name__ == '__main__':
     app.run(use_reloader=True,debug=True)
+
+## Benjamin Zeffer yeet yeet yeet
